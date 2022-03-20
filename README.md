@@ -1,15 +1,8 @@
-    updated: Sunday, 6th March 2021
+    updated: Monday, 21st March 2021
 
 <div align=center>
-    <a href="https://github.com/warmachine028/Euphoria"><img width=800 src="assets/banner.png" alt="Euphoria"></a>
+    <a href="https://euphoria-pritam.netlify.app/"><img width=800 src="assets/banner.png" alt="Euphoria"></a>
     <p style="font-family: roboto, calibri; font-size:12pt; font-style:italic"> A new experience everyday </p>
-    <!-- <a href="https://github.com/warmachine028/Better-Calculator/releases/"> <img src="https://img.shields.io/github/v/release/warmachine028/Better-Calculator"></a>
-    <br>
-    <a href="https://github.com/warmachine028/Better-Calculator/releases/tag/V4.2.1-beta"> <img alt="" src="https://img.shields.io/github/v/release/warmachine028/Better-Calculator?color=red&include_prereleases&label=pre%20release"> </a>
-    <br>
-    <img src="https://img.shields.io/github/stars/warmachine028/Better-Calculator?color=lawngreen">
-    <a href= "https://github.com/warmachine028/Better-Calculator/blob/main/LICENSE"><img src="https://img.shields.io/github/license/warmachine028/Better-Calculator?color=orange"></a>
-    <a href="https://github.com/warmachine028/Better-Calculator/network/members"><img src="https://img.shields.io/github/forks/warmachine028/Better-Calculator?color=cyan"></a> -->
 </div>
 
 # [Euphoria](https://github.com/warmachine028/Euphoria)
