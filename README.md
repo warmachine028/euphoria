@@ -51,7 +51,8 @@
 
 ## Previews
 
-- Will paste a screenshot shortly after deployment
+![Preview](assets/preview.png)
+![Mobile-Preview](assets/mobile-preview.png)
 
 ---
 
@@ -63,7 +64,7 @@
 
 <!-- Links  -->
 
-[license]: https://github.com/warmachine028/Better-Calculator/blob/main/LICENSE
+[license]: https://github.com/warmachine028/euphoria/blob/main/LICENSE
 
 [contributing]: https://github.com/warmachine028/Better-Calculator/blob/main/.github/CONTRIBUTING.md
 
