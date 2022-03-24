@@ -1,15 +1,29 @@
-import GoogleLogin from 'react-google-login'
 import { useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
+import GoogleLogin from 'react-google-login'
 import shareVideo from '../assets/share.mp4'
-import logo from '../assets/logowhite.png'
+import { FcGoogle } from 'react-icons/fc'
+import logo from '../assets/euphoria.png'
 import { client } from '../client'
+import { useEffect } from 'react'
 
-const Login = () => {
+const Login = ({ setUser }) => {
 	const navigate = useNavigate()
-	const responseGoogle = response => {
+
+	useEffect(() => {
+		const user = localStorage.getItem('user')
+		if (user === 'undefined') {
+			localStorage.clear()
+			navigate('/login')
+		} else {
+			setUser(JSON.parse(localStorage.getItem('user')))
+		}
+	}, [navigate, setUser])
+
+	const responseGoogle = (response) => {
 		localStorage.setItem('user', JSON.stringify(response.profileObj))
 		const { name, googleId, imageUrl } = response.profileObj
+
+		// Storing user's image, to reduce API calls to Google
 		const doc = {
 			_id: googleId,
 			_type: 'user',
@@ -17,9 +31,7 @@ const Login = () => {
 			image: imageUrl,
 		}
 
-		client.createIfNotExists(doc).then(() => {
-			navigate('/', { replace: true })
-		})
+		client.createIfNotExists(doc).then(() => navigate('/', { replace: true }))
 	}
 
 	return (
@@ -28,13 +40,13 @@ const Login = () => {
 				<video src={shareVideo} type="video/mp4" loop controls={false} muted autoPlay className="w-full h-full object-cover" />
 				<div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
 					<div className="p-5">
-						<img src={logo} width="130px" alt="Euphoria" />
+						<img src={logo} width="200px" alt="Euphoria" />
 					</div>
 
 					<div className="shadow-2xl">
 						<GoogleLogin
 							clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-							render={renderProps => (
+							render={(renderProps) => (
 								<button type="button" className="bg-mainColor fg-white flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none" onClick={renderProps.onClick} disabled={renderProps.disabled}>
 									<FcGoogle className="mr-4" />
 									Sign In With Google

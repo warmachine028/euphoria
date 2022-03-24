@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdAdd, IoMdSearch } from 'react-icons/io'
 
@@ -17,8 +16,8 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
 				<Link to={`/create-pin`} className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
 					<IoMdAdd />
 				</Link>
-				<Link to={`user-profile/${user._id}`} className="hidden md:block align-middle">
-					<img src={user.image} alt="user" className=" w-14 h-12 rounded-full" />
+				<Link to={`user-profile/${user.googleId}`} className="hidden md:block align-middle">
+					<img src={user.imageUrl} alt="user" className=" w-14 h-12 rounded-full" />
 				</Link>
 			</div>
 		</div>

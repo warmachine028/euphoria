@@ -6,7 +6,6 @@ import { categories } from '../utils/data'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
-// const categories = [{ name: 'Animals' }, { name: 'Wallpapers' }, { name: 'Photography' }, { name: 'Gaming' }, { name: 'Coding' }]
 
 const Sidebar = ({ closeToggle, user }) => {
 	const handleCloseSidebar = () => closeToggle && closeToggle(false)
@@ -31,13 +30,11 @@ const Sidebar = ({ closeToggle, user }) => {
 					))}
 				</div>
 			</div>
-			{user && (
-				<Link to={`user-profile/${user._id}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
-					<img src={user.image} alt="profile" className="w-10 h-10 rounded-full" />
-					<p>{user.userName}</p>
-					<IoIosArrowForward/>
-				</Link>
-			)}
+			<Link to={`user-profile/${user._id}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
+				<img src={user.imageUrl} alt="profile" className="w-10 h-10 rounded-full" />
+				<p>{user.name}</p>
+				<IoIosArrowForward />
+			</Link>
 		</div>
 	)
 }
