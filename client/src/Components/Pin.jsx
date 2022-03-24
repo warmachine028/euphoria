@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { MdDownloadForOffline } from 'react-icons/md'
@@ -11,7 +11,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save }, user }) => {
 	const [savingPost, setSavingPost] = useState(false)
 	const navigate = useNavigate()
 	const googleId = user.googleId
-	const [alreadySaved, setAlreadySaved] = useState(!!save?.filter((item) => item?.postedBy?._id === googleId)?.length)
+	const alreadySaved = !!save?.filter((item) => item?.postedBy?._id === googleId)?.length
 
 	const deletePin = (id) => {
 		client.delete(id).then(() => {
