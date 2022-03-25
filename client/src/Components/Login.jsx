@@ -11,7 +11,7 @@ const Login = ({ setUser }) => {
 	const user = localStorage.getItem('user')
 
 	useEffect(() => {
-		if (user === null) {
+		if (user === null || user === 'undefined') {
 			localStorage.clear()
 			navigate('/login')
 		} else {

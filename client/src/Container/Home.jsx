@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 import { Sidebar, UserProfile } from '../Components'
 import { useState, useRef, useEffect } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
@@ -9,13 +9,11 @@ import Pins from './Pins'
 const Home = ({ user }) => {
 	const [toggleSideBar, setToggleSideBar] = useState(false)
 	const scrollRef = useRef(null)
-
+	const navigate = useNavigate()
 	useEffect(() => {
-		if (user)
-			scrollRef.current.scrollTo(0, 0)
-		else 
-			window.location.reload()
-	}, [ user ])
+		if (user) scrollRef.current.scrollTo(0, 0)
+		else navigate('/login')
+	}, [user])
 
 	if (!user) return null
 
