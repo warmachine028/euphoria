@@ -1,10 +1,10 @@
-import image from '../assets/404.png'
+import image from '../assets/404_background.png'
 
 const pageNotFound = () => {
-    return (
+	return (
 		<div className="flex items-center flex-col">
 			<h1
-				className="font-mono font-bold text-[150px]"
+				className="font-mono font-bold text-[130px] md:text-[150px] pl-5"
 				style={{
 					background: `url(${image})`,
 					WebkitBackgroundClip: 'text',
@@ -13,7 +13,7 @@ const pageNotFound = () => {
 			>
 				Oops!
 			</h1>
-			<h3 className="uppercase font-medium text-[20px] font-['Helvetica']">404! No Pins found</h3>
+			<h3 className="uppercase font-medium text-[15px] font-['Helvetica']">404! No Pins found</h3>
 		</div>
 	)
 }

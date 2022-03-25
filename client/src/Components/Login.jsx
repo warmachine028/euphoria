@@ -8,29 +8,23 @@ import { useEffect } from 'react'
 
 const Login = ({ setUser }) => {
 	const navigate = useNavigate()
+	const user = localStorage.getItem('user')
 
 	useEffect(() => {
-		const user = localStorage.getItem('user')
-		if (user === 'undefined') {
+		if (user === null) {
 			localStorage.clear()
 			navigate('/login')
 		} else {
-			setUser(JSON.parse(localStorage.getItem('user')))
+			setUser(JSON.parse(user))
+			navigate('/')
 		}
-	}, [navigate, setUser])
+	}, [navigate, setUser, user])
 
 	const responseGoogle = (response) => {
 		localStorage.setItem('user', JSON.stringify(response.profileObj))
 		const { name, googleId, imageUrl } = response.profileObj
 
-		// Storing user's image, to reduce API calls to Google
-		const doc = {
-			_id: googleId,
-			_type: 'user',
-			userName: name,
-			image: imageUrl,
-		}
-
+		const doc = { _id: googleId, _type: 'user', userName: name, image: imageUrl }
 		client.createIfNotExists(doc).then(() => navigate('/', { replace: true }))
 	}
 

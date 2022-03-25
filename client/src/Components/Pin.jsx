@@ -6,37 +6,29 @@ import { AiTwotoneDelete } from 'react-icons/ai'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { urlFor, client } from '../client'
 
-const Pin = ({ pin: { postedBy, image, _id, destination, save }, user }) => {
+const Pin = ({ pin: { postedBy, image, _id, destination, save: saves }, user: { googleId } }) => {
 	const [postHovered, setPostHovered] = useState(false)
 	const [savingPost, setSavingPost] = useState(false)
 	const navigate = useNavigate()
-	const googleId = user.googleId
-	const alreadySaved = !!save?.filter((item) => item?.postedBy?._id === googleId)?.length
+	const alreadySaved = !!saves?.filter((save) => save.postedBy?._id === googleId)?.length
+	const maxlength = 15
 
-	const deletePin = (id) => {
-		client.delete(id).then(() => {
-			window.location.reload()
-		})
-	}
+	const deletePin = (id) => client.delete(id).then(() => window.location.reload())
 
 	const savePin = (id) => {
-		if (alreadySaved) {
-			// Unsave Post
-			setSavingPost(true)
+		setSavingPost(true)
+		// ! Unsave POST -> Not Working
+		if (saves.filter((save) => save.postedBy?._id === googleId)) {
+			console.log("Yes, it's already saved. Now Unsave it.")
 			client
 				.patch(id)
-				.unset([`save[userId=="${googleId}"]`])
+				.unset([`save[UserId=="${googleId}"]`])
 				.commit()
-				.then(() => {
-					window.location.reload()
-					setSavingPost(false)
-				})
-			console.log('cance;')
+				.then(() => window.location.reload())
+				.finally(() => setSavingPost(false))
 		} else {
-			setSavingPost(true)
 			client
 				.patch(id)
-				.setIfMissing({ save: [] })
 				.insert('after', 'save[-1]', [
 					{
 						_key: uuidv4(),
@@ -55,7 +47,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save }, user }) => {
 		}
 	}
 
-	const maxlength = 15
 
 	return (
 		<div className="m-2">
@@ -77,7 +68,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save }, user }) => {
 									savePin(_id)
 								}}
 							>
-								{alreadySaved ? `${save?.length} Saved` : savingPost ? 'saving...' : 'save'}
+								{alreadySaved ? `${saves?.length} Saved` : savingPost ? 'saving...' : 'save'}
 							</button>
 						</div>
 						<div className="flex justify-between items-center gap-2 w-full">
@@ -101,7 +92,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save }, user }) => {
 					</div>
 				)}
 			</div>
-			<Link to={`user-profile/${postedBy?._id}`} className="flex gap-2 mt-2 items-center">
+			<Link to={`/user-profile/${postedBy?._id}`} className="flex gap-2 mt-2 items-center">
 				<img alt="user-profile" className="w-8 h-8 rounded-full object-cover" src={postedBy?.image} />
 				<p className="font-semibold capitalize">{postedBy?.userName}</p>
 			</Link>

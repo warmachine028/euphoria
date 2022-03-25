@@ -4,7 +4,8 @@ import { client } from '../client'
 import { feedQuery, searchQuery } from '../utils/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
-import PageNotFound from './PageNotFound'
+import PinsNotFound from './PinsNotFound'
+
 const Feed = () => {
 	const [loading, setLoading] = useState(false)
 	const [pins, setPins] = useState(null)
@@ -21,7 +22,7 @@ const Feed = () => {
 
 	if (loading) return <Spinner message="We are adding new ideas to your feed!" />
 
-	return pins?.length ? <MasonryLayout pins={pins} /> : <PageNotFound />
+	return pins?.length ? <MasonryLayout pins={pins} /> : <PinsNotFound />
 }
 
 export default Feed

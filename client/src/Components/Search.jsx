@@ -3,7 +3,7 @@ import { client } from '../client'
 import { feedQuery, searchQuery } from '../utils/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
-import PageNotFound from './PageNotFound'
+import PinsNotFound from './PinsNotFound'
 
 const Search = ({ searchTerm }) => {
 	const [pins, setPins] = useState(null)
@@ -30,7 +30,7 @@ const Search = ({ searchTerm }) => {
 		<div>
 			{loading && <Spinner message="Searching for pins..." />}
 			{pins?.length ? <MasonryLayout pins={pins} /> : ''}
-			{!pins?.length && searchTerm !== '' && !loading && <PageNotFound />}
+			{!pins?.length && searchTerm !== '' && !loading && <PinsNotFound />}
 		</div>
 	)
 }

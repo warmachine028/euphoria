@@ -17,7 +17,7 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
 					<IoMdAdd />
 				</Link>
 				<Link to={`user-profile/${user.googleId}`} className="hidden md:block align-middle">
-					<img src={user.imageUrl} alt="user" className=" w-14 h-12 rounded-full" />
+					<img src={user.imageUrl} alt="user" className="rounded-full w-14" />
 				</Link>
 			</div>
 		</div>

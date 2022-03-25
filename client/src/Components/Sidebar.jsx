@@ -8,7 +8,7 @@ const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
 const Sidebar = ({ closeToggle, user }) => {
-	const handleCloseSidebar = () => closeToggle && closeToggle(false)
+	const handleCloseSidebar = () => closeToggle(false)
 
 	return (
 		<div className="flex flex-col justify-between bg-white h-full overflow-y-auto min-w-210 hide-scrollbar">
@@ -21,16 +21,19 @@ const Sidebar = ({ closeToggle, user }) => {
 						<RiHomeFill />
 						Home
 					</NavLink>
-					<h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover Categories</h3>
-					{categories.slice(0, categories.length).map((category) => (
-						<NavLink to={`/category/${category.name}`} className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)} onClick={handleCloseSidebar} key={category.name}>
-							<img src={category.image} className="w-7 h-7 rounded-full shadow-lg" alt="category" />
-							{category.name}
-						</NavLink>
-					))}
+					<h3 className="mt-2 px-5 text-base 2xl:text-xl italic font-serif">Discover Categories</h3>
+					{
+						// Rendering All Categories in SideBar
+						categories.slice(0, categories.length).map((category) => (
+							<NavLink to={`/category/${category.name}`} className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)} onClick={handleCloseSidebar} key={category.name}>
+								<img src={category.image} className="w-7 h-7 rounded-full shadow-lg" alt="category" />
+								{category.name}
+							</NavLink>
+						))
+					}
 				</div>
 			</div>
-			<Link to={`user-profile/${user._id}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
+			<Link to={`user-profile/${user.googleId}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
 				<img src={user.imageUrl} alt="profile" className="w-10 h-10 rounded-full" />
 				<p>{user.name}</p>
 				<IoIosArrowForward />

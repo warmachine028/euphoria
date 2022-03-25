@@ -5,7 +5,7 @@ import { GoogleLogout } from 'react-google-login'
 import { userPinsQuery, userQuery } from '../utils/data'
 import { client } from '../client'
 import MasonryLayout from './MasonryLayout'
-import PageNotFound from './PageNotFound'
+import PinsNotFound from './PinsNotFound'
 
 const randomImage = 'https://source.unsplash.com/1600x900/?nature,photography,technology'
 const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none'
@@ -15,9 +15,8 @@ const UserProfile = () => {
 	const [user, setUser] = useState(null)
 	const [pins, setPins] = useState(null)
 	const [text, setText] = useState('created') // created | saved
-	const [activeBtn, setActiveBtn] = useState('created')
-	const { userId } = useParams()
 	const navigate = useNavigate()
+	const { userId } = useParams()
 
 	const logout = () => {
 		localStorage.clear()
@@ -27,8 +26,9 @@ const UserProfile = () => {
 	useEffect(() => {
 		const query = userQuery(userId)
 		client.fetch(query).then((data) => setUser(data[0]))
-	}, [user, userId])
+	}, [userId])
 
+	// Event Listener to set Pin Every time text changes
 	useEffect(() => {
 		const query = userPinsQuery(userId, text)
 		client.fetch(query).then((data) => setPins(data))
@@ -41,51 +41,34 @@ const UserProfile = () => {
 					<div className="flex flex-col justify-center items-center">
 						<img src={randomImage} className="w-full h-370 2xl:h-510 shadow-lg object-cover" alt="banner" />
 						<img src={user?.image} className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover" alt="user-profile" />
-						<h1 className="font-bold text-3xl text-center mt-3">{user?.UserName}</h1>
+						<h1 className="font-bold text-3xl text-center mt-3">{user?.userName}</h1>
 						<div className="absolute top-0 z-1 right-0 p-2">
-							{userId === user?._id && (
-								<GoogleLogout
-									clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-									render={(renderProps) => (
-										<button type="button" className="bg-white p-2 rounded-full cursor-pointer outline-none shadow-md" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-											<AiOutlineLogout color="red" fontSize={21} />
-										</button>
-									)}
-									onLogoutSuccess={logout}
-									cookiePolicy="single_host_origin"
-								/>
-							)}
+							{
+								/*Hide Delete Button for Non Author Posts*/
+								userId === user?._id && (
+									<GoogleLogout
+										clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
+										render={(renderProps) => (
+											<button type="button" className="bg-white p-2 rounded-full cursor-pointer outline-none shadow-md" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+												<AiOutlineLogout color="red" fontSize={21} />
+											</button>
+										)}
+										onLogoutSuccess={logout}
+										cookiePolicy="single_host_origin"
+									/>
+								)
+							}
 						</div>
 					</div>
 					<div className="text-center mb-7">
-						<button
-							type="button"
-							onClick={() => {
-								setText('created')
-								setActiveBtn('created')
-							}}
-							className={`${activeBtn === 'created' ? activeBtnStyles : btnStyles}`}
-						>
+						<button type="button" onClick={() => setText('created')} className={`${text === 'created' ? activeBtnStyles : btnStyles}`}>
 							Created
 						</button>
-						<button
-							type="button"
-							onClick={() => {
-								setText('saved')
-								setActiveBtn('saved')
-							}}
-							className={`${activeBtn === 'saved' ? activeBtnStyles : btnStyles}`}
-						>
+						<button type="button" onClick={() => setText('saved')} className={`${text === 'saved' ? activeBtnStyles : btnStyles}`}>
 							Saved
 						</button>
 					</div>
-					{pins?.length ? (
-						<div className="px-2">
-							<MasonryLayout pins={pins} />
-						</div>
-					) : (
-						<PageNotFound />
-					)}
+					{pins?.length ? <MasonryLayout pins={pins} /> : <PinsNotFound />}
 				</div>
 			</div>
 		</div>

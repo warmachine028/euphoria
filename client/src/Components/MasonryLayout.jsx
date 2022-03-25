@@ -12,10 +12,11 @@ const breakpointObj = {
 }
 
 const MasonryLayout = ({ pins }) => {
-	const user = localStorage.getItem('user')
+	const user = JSON.parse(localStorage.getItem('user'))
+
 	return (
 		<Masonry className="flex animate-slide-fwd" breakpointCols={breakpointObj}>
-			{pins?.map((pin) => (<Pin key={pin._id} pin={pin} className="w-max" user={user}/>))}
+			{pins?.map((pin) => <Pin key={pin._id} pin={pin} user={user} className="w-max" />)}
 		</Masonry>
 	)
 }
