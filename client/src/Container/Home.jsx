@@ -13,7 +13,7 @@ const Home = ({ user }) => {
 	useEffect(() => {
 		if (user) scrollRef.current.scrollTo(0, 0)
 		else navigate('/login')
-	}, [user])
+	}, [user, navigate])
 
 	if (!user) return null
 
