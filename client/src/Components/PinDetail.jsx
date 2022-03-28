@@ -36,7 +36,7 @@ const PinDetail = ({ user }) => {
 
 	useEffect(() => {
 		fetchPinDetails(pinId)
-	}, [pinId])
+	}, [pinId, addingComment])
 
 	const addComment = () => {
 		if (comment) {
@@ -45,12 +45,13 @@ const PinDetail = ({ user }) => {
 			client
 				.patch(pinId)
 				.setIfMissing({ comments: [] })
-				.insert('after', 'comments[-1]', [{ comment, _key: uuidv4(), postedBy: { _type: 'postedBy', _ref: user._id } }])
+				.insert('after', 'comments[-1]', [{ comment, _key: uuidv4(), postedBy: { _type: 'postedBy', _ref: user.googleId } }])
 				.commit()
 				.then(() => {
 					fetchPinDetails(pinId)
 					setComment('')
 					setAddingComment(false)
+					setTimeout(() => window.location.reload(), 2000)
 				})
 		}
 	}
@@ -62,7 +63,7 @@ const PinDetail = ({ user }) => {
 			{pinDetail && (
 				<div className="flex xl:flex-row flex-col m-auto bg-white" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
 					<div className="flex justify-center items-center md:items-start flex-initial pt-3">
-						<img className="rounded-t-lg rounded-b-lg" src={pinDetail?.image && urlFor(pinDetail?.image).url()} alt="user-post" />
+						<img className="rounded-t-lg rounded-b-lg" src={pinDetail.image && urlFor(pinDetail.image).url()} alt="user-post" />
 					</div>
 					<div className="w-full p-5 flex-1 xl:min-w-620">
 						<div className="flex items-center justify-between">
@@ -72,7 +73,7 @@ const PinDetail = ({ user }) => {
 								</a>
 							</div>
 							<a href={pinDetail.destination} target="_blank" rel="noreferrer">
-								{pinDetail.destination?.slice(8)}
+								{pinDetail.destination.slice(0, 30)}
 							</a>
 						</div>
 						<div>
@@ -81,7 +82,7 @@ const PinDetail = ({ user }) => {
 						</div>
 						<Link to={`/user-profile/${pinDetail.postedBy._id}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg">
 							<img src={pinDetail?.postedBy.image} className="w-10 h-10 rounded-full" alt="profile" />
-							<p className="font-bold">{pinDetail?.postedBy.userName}</p>
+							<p className="font-bold">{pinDetail.postedBy.userName}</p>
 						</Link>
 						<h2 className="mt-5 text-2xl">Comments</h2>
 						<div className="max-h-370 overflow-y-auto">
@@ -94,18 +95,17 @@ const PinDetail = ({ user }) => {
 									</div>
 								</div>
 							))}
+							{addingComment && <Spinner message="Adding Comment" />}
 						</div>
-						{user && (
-							<div className="flex flex-wrap mt-6 gap-3">
-								<Link to={`/user-profile/${user.googleId}`}>
-									<img src={user.imageUrl} className="w-10 h-10 rounded-full cursor-pointer" alt="profile" />
-								</Link>
-								<input className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300" type="text" placeholder="Add a comment" value={comment} onChange={(e) => setComment(e.target.value)} />
-								<button className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none" type="button" onClick={addComment}>
-									{addingComment ? 'Posting...' : 'Post'}
-								</button>
-							</div>
-						)}
+						<div className="flex flex-wrap mt-6 gap-3">
+							<Link to={`/user-profile/${user.googleId}`}>
+								<img src={user.imageUrl} className="w-10 h-10 rounded-full cursor-pointer" alt="profile" />
+							</Link>
+							<input className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300" type="text" placeholder="Add a comment" value={comment} onChange={(e) => setComment(e.target.value)} />
+							<button className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none" type="button" onClick={addComment}>
+								{addingComment ? 'Posting...' : 'Post'}
+							</button>
+						</div>
 					</div>
 				</div>
 			)}

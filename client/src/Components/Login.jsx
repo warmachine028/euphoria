@@ -6,7 +6,7 @@ import logo from '../assets/euphoria.png'
 import { client } from '../client'
 import { useEffect } from 'react'
 
-const Login = ({ setUser }) => {
+const Login = () => {
 	const navigate = useNavigate()
 	const user = localStorage.getItem('user')
 
@@ -15,10 +15,9 @@ const Login = ({ setUser }) => {
 			localStorage.clear()
 			navigate('/login')
 		} else {
-			setUser(JSON.parse(user))
 			navigate('/')
 		}
-	}, [navigate, setUser, user])
+	}, [navigate, user])
 
 	const responseGoogle = (response) => {
 		localStorage.setItem('user', JSON.stringify(response.profileObj))

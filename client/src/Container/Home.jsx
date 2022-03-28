@@ -6,17 +6,18 @@ import icon from '../assets/icon.png'
 import { HiMenu } from 'react-icons/hi'
 import Pins from './Pins'
 
-const Home = ({ user }) => {
+const Home = () => {
+	const user = JSON.parse(localStorage.getItem('user'))
 	const [toggleSideBar, setToggleSideBar] = useState(false)
 	const scrollRef = useRef(null)
 	const navigate = useNavigate()
+
 	useEffect(() => {
 		if (user) scrollRef.current.scrollTo(0, 0)
 		else navigate('/login')
 	}, [user, navigate])
 
 	if (!user) return null
-
 	return (
 		<div className="flex bg-grey-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
 			<div className="hidden md:flex h-screen flex-initial">

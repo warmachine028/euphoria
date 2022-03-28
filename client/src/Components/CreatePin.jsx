@@ -85,7 +85,7 @@ const CreatePin = ({ user }) => {
 										</div>
 										<p className="mt-32 text-gray-400 text-center">Recommendation: use high-quality JPG, SVG, PNG, GIF or TIFF less than 20 MB</p>
 									</div>
-									<input type="file" name="upload-image" onChange={uploadImage} className="hidden"/>
+									<input type="file" name="upload-image" onChange={uploadImage} className="hidden" />
 								</label>
 							) : (
 								<div className="relative h-full">
@@ -115,7 +115,7 @@ const CreatePin = ({ user }) => {
 										Select Category
 									</option>
 									{categories.map((category) => (
-										<option className="text-base border-0 outline-none capitalize bg-white text-black" value={category.name}>
+										<option className="text-base border-0 outline-none capitalize bg-white text-black" value={category.name} key={category.name}>
 											{category.name}
 										</option>
 									))}
