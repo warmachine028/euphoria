@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import GoogleLogin from 'react-google-login'
 import shareVideo from '../assets/share.mp4'
-import { FcGoogle } from 'react-icons/fc'
+import { GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
 import logo from '../assets/euphoria.png'
 import { client } from '../client'
 import { useEffect } from 'react'
@@ -20,10 +20,10 @@ const Login = () => {
 	}, [navigate, user])
 
 	const responseGoogle = (response) => {
-		localStorage.setItem('user', JSON.stringify(response.profileObj))
-		const { name, googleId, imageUrl } = response.profileObj
-
-		const doc = { _id: googleId, _type: 'user', userName: name, image: imageUrl }
+		const profileObj = jwt_decode(response.credential)
+		localStorage.setItem('user', JSON.stringify(profileObj))
+		const { name, sub, picture } = profileObj
+		const doc = { _id: sub, _type: 'user', userName: name, image: picture }
 		client.createIfNotExists(doc).then(() => navigate('/', { replace: true }))
 	}
 
@@ -37,18 +37,7 @@ const Login = () => {
 					</div>
 
 					<div className="shadow-2xl">
-						<GoogleLogin
-							clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-							render={(renderProps) => (
-								<button type="button" className="bg-mainColor fg-white flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-									<FcGoogle className="mr-4" />
-									Sign In With Google
-								</button>
-							)}
-							onSuccess={responseGoogle}
-							onFailure={responseGoogle}
-							cookiePolicy="single_host_origin"
-						/>
+						<GoogleLogin onSuccess={responseGoogle} onFailure={responseGoogle} />
 					</div>
 				</div>
 			</div>

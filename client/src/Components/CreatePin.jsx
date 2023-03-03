@@ -54,7 +54,7 @@ const CreatePin = ({ user }) => {
 				userId: user.googleId,
 				postedBy: {
 					_type: 'postedBy',
-					_ref: user.googleId,
+					_ref: user.sub,
 				},
 				category,
 			}
@@ -101,7 +101,7 @@ const CreatePin = ({ user }) => {
 						<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Add your title here" className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2" />
 						{user && (
 							<div className="flex gap-2 my-2 items-center bg-white rounded-lg">
-								<img src={user.imageUrl} className="w-10 h-10 rounded-full" alt="user-profile" />
+								<img src={user.picture} className="w-10 h-10 rounded-full" alt="user-profile" />
 								<p className="font-bold">{user.name}</p>
 							</div>
 						)}

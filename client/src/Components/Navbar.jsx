@@ -16,8 +16,8 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
 				<Link to={`/create-pin`} className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
 					<IoMdAdd />
 				</Link>
-				<Link to={`user-profile/${user.googleId}`} className="hidden md:block align-middle">
-					<img src={user.imageUrl} alt="user" className="rounded-full w-14" />
+				<Link to={`user-profile/${user.sub}`} className="hidden md:block align-middle">
+					<img src={user.picture} alt="user" className="rounded-full w-14" />
 				</Link>
 			</div>
 		</div>

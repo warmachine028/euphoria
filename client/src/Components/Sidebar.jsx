@@ -33,8 +33,8 @@ const Sidebar = ({ closeToggle, user }) => {
 					}
 				</div>
 			</div>
-			<Link to={`user-profile/${user.googleId}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
-				<img src={user.imageUrl} alt="profile" className="w-10 h-10 rounded-full" />
+			<Link to={`user-profile/${user.sub}`} className="flex my-5 mb-3 gap-2 items-center bg-white shadow-lg mx-3" onClick={handleCloseSidebar}>
+				<img src={user.picture} alt="profile" className="w-10 h-10 rounded-full" />
 				<p>{user.name}</p>
 				<IoIosArrowForward />
 			</Link>
