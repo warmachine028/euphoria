@@ -29,8 +29,8 @@ const Home = () => {
 					<Link to="/" className="flex space-x-5">
 						<img src={icon} alt="logo" className="h-10" />
 					</Link>
-					<Link to={`/user-profile/${user.googleId}`}>
-						<img src={user.imageUrl} alt="user-pic" className="w-9 h-9 rounded-full" />
+					<Link to={`/user-profile/${user.sub}`}>
+						<img src={user.picture} alt="user-pic" className="w-9 h-9 rounded-full" />
 					</Link>
 				</div>
 				{toggleSideBar && (
