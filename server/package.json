@@ -19,7 +19,7 @@
 		"@sanity/default-layout": "^2.35.5",
 		"@sanity/default-login": "^2.35.5",
 		"@sanity/desk-tool": "^2.36.2",
-		"@sanity/eslint-config-studio": "^2.0.1",
+		"@sanity/eslint-config-studio": "^4.0.0",
 		"@sanity/vision": "^2.35.6",
 		"eslint": "^8.6.0",
 		"prop-types": "^15.7",
