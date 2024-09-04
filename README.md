@@ -1,7 +1,10 @@
     updated: Friday, 03rd March 2023
 
+
 <div align=center>
-    <a href="https://euphoria-pritam.netlify.app"><img width=800 src="assets/banner.png" alt="Euphoria"></a>
+    <a href="https://euphoria-pritam.netlify.app">
+        <img width=200 src="client/src/assets/icon.png" alt="Euphoria">
+    </a>
     <p style="font-family: roboto, calibri; font-size:12pt; font-style:italic"> A new experience everyday </p>
 </div>
 
@@ -64,7 +67,7 @@
 
 -   see [LICENSE]
 
-**Pritam, 2023**
+**Pritam, 2024**
 
 <!-- Links  -->
 
