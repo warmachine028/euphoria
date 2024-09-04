@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import shareVideo from '../assets/share.mp4'
 import { GoogleLogin } from '@react-oauth/google'
-import jwt_decode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import logo from '../assets/euphoria.png'
 import { client } from '../client'
 import { useEffect } from 'react'
@@ -20,7 +20,7 @@ const Login = () => {
 	}, [navigate, user])
 
 	const responseGoogle = (response) => {
-		const profileObj = jwt_decode(response.credential)
+		const profileObj = jwtDecode(response.credential)
 		localStorage.setItem('user', JSON.stringify(profileObj))
 		const { name, sub, picture } = profileObj
 		const doc = { _id: sub, _type: 'user', userName: name, image: picture }
