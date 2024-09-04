@@ -1571,7 +1571,7 @@
   resolved "https://registry.npmjs.org/@sanity/asset-utils/-/asset-utils-1.3.0.tgz"
   integrity sha512-uyIOtGA4Duf+68I3BSbYHY5P+WGftn3QtNJD2Pn7h9WPGYsSrWViIPebE9yRN8N0NHhYj+hDQXaMpVdjG7r+zA==
 
-"@sanity/base@2.35.5", "@sanity/base@^2.35.5":
+"@sanity/base@2.35.5":
   version "2.35.5"
   resolved "https://registry.npmjs.org/@sanity/base/-/base-2.35.5.tgz"
   integrity sha512-lphKLzCo2HTJic1ubG/XIw47reCKvKrXw1ytvAR/TXkBaYKgpGjjmgoG+SyNisCIJomrG2SHfv0mDbNMF2+how==
@@ -1633,7 +1633,7 @@
     shallow-equals "^1.0.0"
     use-device-pixel-ratio "^1.1.0"
 
-"@sanity/base@2.36.2":
+"@sanity/base@2.36.2", "@sanity/base@^2.35.5":
   version "2.36.2"
   resolved "https://registry.yarnpkg.com/@sanity/base/-/base-2.36.2.tgz#dd00c9273bb6c233fbbc67817b6020f05376accd"
   integrity sha512-Mma7CVFWApGCOJV9m0hKhN84PKhm91MMBlgs1+UqkyyIbzMZIyiw3K63fEJHulX7LB/eBM7//BESBhNEEY8Z3w==
@@ -1816,22 +1816,22 @@
     "@sanity/generate-help-url" "^3.0.0"
     lodash "^4.17.15"
 
-"@sanity/default-layout@^2.35.5":
-  version "2.35.5"
-  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-2.35.5.tgz"
-  integrity sha512-YicNyiJl8bmy6TTovBzXpfPYnjkr9kbVYizUxSGLBmZGSQf/w0cUQKWadMTgHzmgPxysqUqzBOlkyTSOcFH4Iw==
+"@sanity/default-layout@^2.36.2":
+  version "2.36.2"
+  resolved "https://registry.yarnpkg.com/@sanity/default-layout/-/default-layout-2.36.2.tgz#cfa678a209358b784e09b4c6d135cd8cc87b24d5"
+  integrity sha512-Hch/lbVXFzswg7eIo1rolvyiXXGp2Z+OSpHeuBmbJ5YQoM9UA3LBJQC1PgQS3QOubrCM/ew/eSLXbKLY3IF5MA==
   dependencies:
     "@portabletext/react" "^1.0.0"
     "@reach/auto-id" "^0.13.2"
     "@sanity/asset-utils" "^1.2.5"
-    "@sanity/base" "2.35.5"
+    "@sanity/base" "2.36.2"
     "@sanity/client" "^3.3.3"
     "@sanity/generate-help-url" "^3.0.0"
     "@sanity/icons" "^1.3.4"
     "@sanity/image-url" "^1.0.1"
     "@sanity/logos" "^1.1.15"
     "@sanity/ui" "^0.37.22"
-    "@sanity/util" "2.35.0"
+    "@sanity/util" "2.36.2"
     debug "^3.2.7"
     is-hotkey "^0.1.6"
     lodash "^4.17.15"
