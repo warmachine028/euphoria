@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@sanity/base": "^2.35.5",
 		"@sanity/core": "^2.35.6",
-		"@sanity/default-layout": "^2.35.5",
+		"@sanity/default-layout": "^2.36.2",
 		"@sanity/default-login": "^2.35.5",
 		"@sanity/desk-tool": "^2.36.2",
 		"@sanity/eslint-config-studio": "^2.0.1",
