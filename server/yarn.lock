@@ -2259,10 +2259,10 @@
     lodash "^4.17.15"
     rxjs "^6.5.3"
 
-"@sanity/vision@^2.36.2":
-  version "2.36.2"
-  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-2.36.2.tgz#b191c49cca0db465a0d988169c008c2a1d337a42"
-  integrity sha512-5yfQPFWUwasejrEXFTZ7Y+22JndpctRA3NTjP/xr3M8S7N8QU60IGoygS2HbGbrhCOUNBjK+J67mI/B9EKFkuA==
+"@sanity/vision@^2.36.6":
+  version "2.36.6"
+  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-2.36.6.tgz#c40ccea746b6dcb8e1076b4e71f58cab051c0da3"
+  integrity sha512-b7COLLcsiendKgLD/IQlTqwP8M6XPFf8ljtI8gvV5GoXhS0dhzbf/pSdUsU6/OewMDRLOQycT6xCVDdgS5dsIg==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@sanity/icons" "^1.3.4"
