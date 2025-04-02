@@ -7,7 +7,7 @@
     "@sanity/client": "^6.28.4",
     "@sanity/image-url": "^1.1.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
+    "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "jwt-decode": "^4.0.0",
     "react": "^19.1.0",
