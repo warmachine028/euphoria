@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
-    "@sanity/client": "^7.2.2",
+    "@sanity/client": "^7.3.0",
     "@sanity/image-url": "^1.1.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
