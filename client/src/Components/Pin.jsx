@@ -17,12 +17,12 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save: saves }, user: { 
 
 	const savePin = (id) => {
 		setSavingPost(true)
-		// ! Unsave POST -> Not Working
-		if (saves.filter((save) => save.postedBy?._id === googleId)) {
+		// Check if the post is already saved by current user
+		if (alreadySaved) {
 			console.log("Yes, it's already saved. Now Unsave it.")
 			client
 				.patch(id)
-				.unset([`save[UserId=="${googleId}"]`])
+				.unset([`save[userId=="${googleId}"]`])
 				.commit()
 				.then(() => window.location.reload())
 				.finally(() => setSavingPost(false))
@@ -68,7 +68,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save: saves }, user: { 
 									savePin(_id)
 								}}
 							>
-								{alreadySaved ? `${saves?.length} Saved` : savingPost ? 'saving...' : 'save'}
+								{savingPost ? (alreadySaved ? 'Unsaving...' : 'Saving...') : (alreadySaved ? `Saved (${saves?.length})` : 'Save')}
 							</button>
 						</div>
 						<div className="flex justify-between items-center gap-2 w-full">
