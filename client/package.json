@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-oauth/google": "^0.12.2",
+    "@react-oauth/google": "^0.13.4",
     "@sanity/client": "^7.13.2",
     "@sanity/image-url": "^2.0.2",
     "@testing-library/jest-dom": "^6.9.1",
